@@ -1,0 +1,36 @@
+.contain{
+    background-color: rgb(0, 0, 0);
+    margin-bottom: 250px;
+}
+.hero_Image{
+    height: 100%;
+}
+.header,
+.triangel{
+    position: relative;
+    z-index: 1;
+}
+.buzzword{
+    color: red;
+}
+.triangel{
+    top: 144px;
+    width: 1400px; 
+    height: 300px; 
+    border-left: 1400px solid transparent;
+    border-right: 15px solid transparent; 
+    border-bottom: 160px solid rgb(255, 255, 255);
+}
+.text_image{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+
+}
+.header{
+    color:white;
+    font-size: 50px;
+    width: 400px;
+    left: 100px;
+    text-align: center;
+}
+

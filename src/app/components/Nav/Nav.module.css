@@ -1,0 +1,23 @@
+.main_nav{
+
+  background-color: black;  
+  height: 60px;
+  color:azure;
+  display: grid;
+  grid-template-columns: 0.5fr 4fr 1fr;
+  align-items: center;
+  position: sticky;
+  z-index: 10;
+  top: 0;
+}
+.search{
+    display: flex;
+}
+.search_bar{
+    width: 65%;
+}
+.menu,
+.logo{
+    text-align: center;
+    cursor: pointer;
+}

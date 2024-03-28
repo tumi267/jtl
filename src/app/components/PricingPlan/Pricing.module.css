@@ -1,0 +1,23 @@
+.contain{
+    background-color: rgb(242, 245, 249);
+    text-align: center;
+}
+.card_contain{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.card{
+    margin-top: 5px;
+    margin-bottom: 30px;
+
+}
+.card_details{
+    border: 2px solid black;
+    width: 80%;
+    padding: 5% 2%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+}
