@@ -10,10 +10,9 @@ export default function Home() {
       <div className={styles.contain}>
         <Hero/>
         <Promo/>
+        {/* catagorie cards */}
         <PricingPlan/>
         <Playlist/>
-        {/* catagorie cards */}
-
       </div>
     </main>
   )
