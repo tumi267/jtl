@@ -1,0 +1,9 @@
+.contain{
+    min-height: calc(100vh - 180px);
+    display: flex;
+    gap:50px;
+    
+}
+.header{
+    text-align: center;
+}

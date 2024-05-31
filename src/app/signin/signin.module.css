@@ -1,0 +1,14 @@
+.contain{
+    min-height: calc(100vh - 335px);
+}
+.input_form{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15%;
+    border: 1px solid black;
+    width: 60%;
+    padding: 60px;
+
+}

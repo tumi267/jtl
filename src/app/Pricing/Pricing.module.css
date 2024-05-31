@@ -1,0 +1,17 @@
+.contain{
+    min-height: calc(100vh - 180px);
+}
+.breakdown{
+    display: flex;
+    gap: 65px;
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px
+}
+.header{
+    text-align: center;
+}
+.breakdown_content{
+    width: 270px;
+    border: 2px solid black;
+}

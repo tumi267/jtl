@@ -14,12 +14,13 @@
     color: red;
 }
 .triangel{
-    top: 144px;
-    width: 1400px; 
+    top: 124px;
+    bottom: 0px;
+    /* width: 1400px;  */
     height: 300px; 
-    border-left: 1400px solid transparent;
-    border-right: 15px solid transparent; 
-    border-bottom: 160px solid rgb(255, 255, 255);
+    /* border-left: 1400px solid transparent;
+    border-right: 15px solid transparent;  */
+    /* border-bottom: 160px solid rgb(255, 255, 255); */
 }
 .text_image{
     display: grid;
