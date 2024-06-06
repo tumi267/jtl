@@ -1,5 +1,5 @@
 import UserPlaylist from '../components/userPlaylist/UserPlaylist'
-function page() {  
+function Page() {  
   return (
     <>
           <UserPlaylist/>
@@ -8,4 +8,4 @@ function page() {
 
 }
 
-export default page
+export default Page

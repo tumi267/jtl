@@ -3,7 +3,7 @@ import { useState } from "react"
 import Filters from "../components/Filters/Filters"
 import Playlist from "../components/Playlist/Playlist"
 import styles from './palylist.module.css'
-function page() {
+function Page() {
   const [openRecent,setOpenRecent]=useState(false)
   const [openPlayList,setPlayList]=useState(false)
   const [openVote,setVote]=useState(true)
@@ -74,4 +74,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

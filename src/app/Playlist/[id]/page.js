@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation'
 import styles from '../palylist.module.css'
 import Filters from '@/app/components/Filters/Filters'
 import { useState } from 'react'
-function page() {
+function Page() {
     const params = useParams()
     const [filters,setfilters]=useState(null)
   return (
@@ -24,4 +24,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

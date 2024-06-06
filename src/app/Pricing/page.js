@@ -1,6 +1,6 @@
 import PricingPlan from "../components/PricingPlan/PricingPlan"
 import styles from './Pricing.module.css'
-function page() {
+function Page() {
   return (
     <div className={styles.contain}>
       <h1>pricing plan</h1>
@@ -29,4 +29,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

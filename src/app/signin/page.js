@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { UserState } from '../context/context'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../db/firebase'
-function page() {
+function Page() {
     const router = useRouter()
     const {user,setUser}=UserState()
     const [deatils,setDetails]=useState({password:'',email:''})
@@ -38,7 +38,7 @@ function page() {
           )
 }
 
-export default page
+export default Page
 
 
 
