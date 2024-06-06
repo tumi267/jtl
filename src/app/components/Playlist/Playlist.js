@@ -3,6 +3,9 @@ import Image from 'next/image'
 import styles from './PlayList.module.css'
 import { useEffect, useState } from 'react'
 import Upvote from '../upvote/Upvote'
+import comapreDate from '@/app/lib/compareDate'
+import formatDuration from '@/app/lib/formatDuration'
+import getAudioDuration from '@/app/lib/getduration'
 
 function Playlist({selete,options,genre}) {
   const [list,setlist]=useState([])
@@ -20,38 +23,48 @@ function Playlist({selete,options,genre}) {
         const duration = await getAudioDuration(audio.songUrl);
         return { ...audio, duration };
       }));
-        setlist(listWithDurations)
+      switch (selete) {
+        case 'vote':
+         
+          setlist(listWithDurations)
+          break;
+          case 'recent':
+            const recent=listWithDurations.filter((e)=>{
+              if(comapreDate(e)!==null){
+                return e
+              }
+            })
+            setlist(recent)
+          break;
+          case 'fulllist':
+            setlist(listWithDurations)
+            break;
+          case 'user':
+              setlist(listWithDurations)
+              break;
+          case 'recomennded':
+              setlist(listWithDurations)
+              break;
+          case 'genre':
+            
+                setlist(listWithDurations)
+                break;
+        default:
+          break;
+      }
       }
       audioloader()
      
     },[options]
   )
-  const getAudioDuration = async (url) => {
-    const audio = new Audio(url);
-    await new Promise(resolve => {
-      audio.addEventListener('loadedmetadata', () => {
-        resolve(audio.duration);
-      });
-    });
-    return audio.duration;
-  };
-  // Define the function to format the duration
-  const formatDuration = (duration) => {
-    
-    const minutes = Math.floor(duration / 60);
-    const seconds = Math.floor(duration % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-  };
+
   // Define the regex pattern to match any file extension
   let pattern = /\.[a-zA-Z0-9]+\b/g;
 
-  const handleUpVote= async()=>{
-    // upvote logic gose here lib call
-    alert('upvote')
-  }
+
   const handleDownLoad =async()=>{
     // download logic gose here lib call
-    alert('download')
+    alert('buy')
   }
   return (
     <div className={styles.contain}>
@@ -81,7 +94,7 @@ function Playlist({selete,options,genre}) {
         song={e}
         />
         </span>:<span>
-        <button onClick={handleDownLoad}>download</button>
+        <button onClick={handleDownLoad}>buy</button>
         </span>}
         </span>
       </div>

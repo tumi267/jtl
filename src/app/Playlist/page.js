@@ -48,7 +48,6 @@ function page() {
         selete={'recent'}
         options={filters}
         />
-        <button>view more</button>
       </div>
       }  
       </div>
@@ -67,7 +66,6 @@ function page() {
         selete={'fulllist'}
         options={filters}
         />
-        <button>view more/infinate scroll</button>
       </div>
       }
       </div>

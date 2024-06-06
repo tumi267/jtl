@@ -1,19 +1,20 @@
 import AddSong from "../components/AddSong/AddSong"
+import RemoveSong from "../components/RemoveSong/RemoveSong"
 
 function Page() {
   return (
     <div>
       <h1>Admin</h1>
         
-      <div><AddSong/></div>
+      {/* <AddSong/> */}
 
-      <div>remove </div>
+      <RemoveSong/>
         
-      <div>states</div>
+      {/* <div>states</div>
 
       <div>votes</div>
         
-      <div>Q&A</div>
+      <div>Q&A</div> */}
       
     </div>
   )

@@ -3,7 +3,7 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from "firebase/storage"
 import { getAuth } from "firebase/auth";
 const firebaseConfig = {
-    apiKey: "AIzaSyA8zSNo2qo1WVSr0hiwwSM5nNIE_8cTxHk",
+    apiKey: `${process.env.NEXT_PUBLIC_apikey}`,
     authDomain: "jtlibrary-3b6c6.firebaseapp.com",
     projectId: "jtlibrary-3b6c6",
     storageBucket: "jtlibrary-3b6c6.appspot.com",
