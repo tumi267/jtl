@@ -4,6 +4,8 @@ import search from "@/app/lib/search"
 import Image from "next/image"
 import { useState } from "react"
 import styles from '../Playlist/PlayList.module.css'
+import getfilename from '../../lib/getfilename'
+import deletefilefromstorage from '../../lib/deletefilefromstorage'
 function RemoveSong() {
     const [searchinput,setSearchinput]=useState('')
     const [song,setSongs]=useState([])
@@ -16,8 +18,11 @@ function RemoveSong() {
         setSongs(list)
     }
     const handleDelete=async(e)=>{
-      alert('delete song')
+      const songName=await getfilename(e.songUrl)
+      const imageName=await getfilename(e.imageUrl)
+      deletefilefromstorage(songName,imageName)
     }
+
   return (
     <div>
         look for song
