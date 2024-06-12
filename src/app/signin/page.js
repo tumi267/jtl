@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 import styles from './signin.module.css'
 import { useEffect, useState } from 'react'
 import { UserState } from '../context/context'
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../db/firebase'
 function Page() {
   const router = useRouter();
@@ -42,7 +42,19 @@ function Page() {
     e.preventDefault();
     if (isEmailValid && isPasswordValid && doPasswordsMatch) {
       // Proceed with registration
-      console.log(details);
+      createUserWithEmailAndPassword(auth, details.email, details.password)
+      .then((userCredential) => {
+        console.log('Registration successful');
+        setDetails({ password: '', email: '', priceplan: '', name: '' });
+        setConfirmPassword('');
+        const userdetails = userCredential.user;
+        setUser(userdetails);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage);
+        console.log(errorMessage);
+      })
       console.log('Registration successful');
     } else {
       // Show error message or handle invalid input
