@@ -11,7 +11,7 @@ export async function POST(request)  {
         const songlist=(songs)=>{        
             songs.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
-             songarr.push(doc.data());
+             songarr.push({id: doc.id, ...doc.data()});
           });}
         if(req.options!==null){       
         // Construct the query dynamically using reduce
@@ -19,6 +19,7 @@ export async function POST(request)  {
         return query(acc, where(key, '==', value));
         }, songsCollection);
         const songs = await getDocs(q);
+        
         songlist(songs)
         }
         else{
@@ -29,6 +30,7 @@ export async function POST(request)  {
             }else{
                 const q = query(collection(db, "songs"));
                 const songs = await getDocs(q);
+               
                 songlist(songs)
             }
         }

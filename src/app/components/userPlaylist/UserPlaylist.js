@@ -27,11 +27,15 @@ function UserPlaylist() {
         const listinfo=await list.json()
         setData(listinfo.user)
         const songdata=listinfo.songlist.map(async(e)=>{
-            const duration = await getAudioDuration(e.songUrl);
-            return {...e,duration}
+          
+            const duration = await getAudioDuration(e?.songUrl);
+            if(duration){
+              return {...e,duration}
+            }
         })
         const results = await Promise.all(songdata);
-        setSongList(results)
+        const newlist=results.filter(e=>{return e!=undefined})
+        setSongList(newlist)
        } 
        data()
     },[user?.email])
@@ -52,16 +56,16 @@ function UserPlaylist() {
         <h2>songs bought</h2>
         {songList.map((e,i)=>{return <div key={i} className={styles.audio_card}>
         <div className={styles.image_discription}>
-      <Image src={e.imageUrl} alt={e.name} width={100} height={100}/>
+      <Image src={e?.imageUrl} alt={e?.name} width={100} height={100}/>
       <div>
-      <p>{e.name}</p>
-      <p>{formatDuration(e.duration)}</p>
-      <p>{e.mood}</p>
-      <p>{e.bpm}</p>
+      <p>{e?.name}</p>
+      <p>{formatDuration(e?.duration)}</p>
+      <p>{e?.mood}</p>
+      <p>{e?.bpm}</p>
       </div>
       </div>
       <audio controls controlsList='nodownload'>
-      <source src={e.songUrl}/>
+      <source src={e?.songUrl}/>
       </audio>
       <span>
         <button onClick={handleDownLoad}>download</button>
@@ -70,6 +74,9 @@ function UserPlaylist() {
         </div>
         <div>
         <h2>you may also like</h2>
+        {/* need logic based on songs bought else random
+        if song bought then dont render
+        */}
         <Playlist
         selete={'genre'}
         genre={songList[Math.floor(Math.random()*songList.length)]?.genre}

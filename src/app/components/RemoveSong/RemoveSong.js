@@ -20,7 +20,7 @@ function RemoveSong() {
     const handleDelete=async(e)=>{
       const songName=await getfilename(e.songUrl)
       const imageName=await getfilename(e.imageUrl)
-      deletefilefromstorage(songName,imageName)
+      deletefilefromstorage(songName,imageName,e)
     }
 
   return (

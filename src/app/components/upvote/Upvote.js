@@ -6,10 +6,11 @@ function Upvote({song}) {
     const handleVote=async()=>{
         let newcount=count+1;
         setCount(newcount);
+       
     }
     useEffect(()=>{
         if(song.votes!==count){
-           upvote(song,count)
+           upvote(song,count,song.id)
         }
     },[count])
   return (

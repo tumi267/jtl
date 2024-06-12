@@ -2,9 +2,15 @@ import { collection, doc, setDoc } from "firebase/firestore";
 import firebase from "../db/firebase";
 import { db } from "../db/firebase";
 
-function upvote(song,count) {
-// console.log({name:song.name,count})
-alert('count')
+async function upvote(song,count,id) {
+    try{
+        const docRef = doc(db, "songs", `${id}`);
+        const newData =({...song,votes:count})
+        await setDoc(docRef, newData);
+    }catch(e) {
+        console.error("Error writing document: ", e);
+      }
+
 }
 
 export default upvote

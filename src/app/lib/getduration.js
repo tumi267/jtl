@@ -1,4 +1,5 @@
 const getAudioDuration = async (url) => {
+  if(url!==undefined){
     const audio = new Audio(url);
     await new Promise(resolve => {
       audio.addEventListener('loadedmetadata', () => {
@@ -6,6 +7,7 @@ const getAudioDuration = async (url) => {
       });
     });
     return audio.duration;
+    }
   };
 
   export default getAudioDuration

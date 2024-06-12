@@ -14,8 +14,8 @@ const search=async (song)=>{
   // Iterate over each document in the snapshot
   querySnapshot.forEach((doc) => {
     // Add each document's data to the array
-    console.log(doc.data())
-    songsArray.push(doc.data());
+    
+    songsArray.push({...doc.data(),id:doc.id});
   });
 
   // Return the accumulated array of song data
