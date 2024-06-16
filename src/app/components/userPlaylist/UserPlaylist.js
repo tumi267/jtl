@@ -8,6 +8,7 @@ import Image from "next/image"
 import getAudioDuration from "@/app/lib/getduration"
 import Playlist from "../Playlist/Playlist"
 import styles from '../Playlist/PlayList.module.css'
+import PlaylistCard from "../PlaylistCard/PlaylistCard"
 function UserPlaylist() {
     const {user}=UserState()
     const router=useRouter()
@@ -55,19 +56,9 @@ function UserPlaylist() {
         <div >
         <h2>songs bought</h2>
         {songList.map((e,i)=>{return <div key={i} className={styles.audio_card}>
-        <div className={styles.image_discription}>
-      <Image src={e?.imageUrl} alt={e?.name} width={100} height={100}/>
-      <div>
-      <p>{e?.name}</p>
-      <p>{formatDuration(e?.duration)}</p>
-      <p>{e?.mood}</p>
-      <p>{e?.bpm}</p>
-      </div>
-      </div>
-      <audio controls controlsList='nodownload'>
-      <source src={e?.songUrl}/>
-      </audio>
-      <span>
+          <PlaylistCard
+          e={e}/>
+        <span>
         <button onClick={handleDownLoad}>download</button>
         </span>
         </div>})}

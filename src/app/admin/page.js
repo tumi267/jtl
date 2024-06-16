@@ -1,6 +1,6 @@
 import AddSong from "../components/AddSong/AddSong"
 import RemoveSong from "../components/RemoveSong/RemoveSong"
-
+import AdminVotes from "../components/AdminVotes/AdminVotes"
 function Page() {
   return (
     <div>
@@ -8,12 +8,11 @@ function Page() {
         
       {/* <AddSong/> */}
 
-      <RemoveSong/>
-        
+      {/* <RemoveSong/> */}
+      
+      <AdminVotes/>
       {/* <div>states</div>
 
-      <div>votes</div>
-        
       <div>Q&A</div> */}
       
     </div>

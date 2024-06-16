@@ -6,6 +6,7 @@ import Upvote from '../upvote/Upvote'
 import comapreDate from '@/app/lib/compareDate'
 import formatDuration from '@/app/lib/formatDuration'
 import getAudioDuration from '@/app/lib/getduration'
+import PlaylistCard from '../PlaylistCard/PlaylistCard'
 
 function Playlist({selete,options,genre}) {
   const [list,setlist]=useState([])
@@ -58,10 +59,6 @@ function Playlist({selete,options,genre}) {
     },[options]
   )
 
-  // Define the regex pattern to match any file extension
-  let pattern = /\.[a-zA-Z0-9]+\b/g;
-
-
   const handleDownLoad =async()=>{
     // download logic gose here lib call
     alert('buy')
@@ -76,19 +73,8 @@ function Playlist({selete,options,genre}) {
     */}
     {/* loading state when loading song */}
     {list.map((e,i)=>{return<div className={styles.audio_card} key={i}>
-      <div className={styles.image_discription}>
-      <Image src={e.imageUrl} alt={e.name} width={100} height={100}/>
-      <div>
-      
-      <p>{e.name.replace(pattern, '')}</p>
-      <p>{formatDuration(e.duration)}</p>
-      <p>{e.mood}</p>
-      <p>{e.bpm}</p>
-      </div>
-      </div>
-      <audio controls controlsList='nodownload'>
-      <source src={e.songUrl}/>
-      </audio>
+      <PlaylistCard
+      e={e}/>
       <span>{selete=='vote'?<span>
         <Upvote
         song={e}
