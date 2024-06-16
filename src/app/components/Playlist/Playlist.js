@@ -7,8 +7,11 @@ import comapreDate from '@/app/lib/compareDate'
 import formatDuration from '@/app/lib/formatDuration'
 import getAudioDuration from '@/app/lib/getduration'
 import PlaylistCard from '../PlaylistCard/PlaylistCard'
+import { UserState } from '@/app/context/context'
+import UpdateUserSongs from '@/app/lib/UpdateUserSongs'
 
 function Playlist({selete,options,genre}) {
+  const {user}=UserState()
   const [list,setlist]=useState([])
   useEffect(
     ()=>{
@@ -26,8 +29,12 @@ function Playlist({selete,options,genre}) {
       }));
       switch (selete) {
         case 'vote':
-         
-          setlist(listWithDurations)
+          const votelist=listWithDurations.filter((e)=>{
+            if(e.voteList!==false){
+              return e
+            }
+          })
+          setlist(votelist)
           break;
           case 'recent':
             const recent=listWithDurations.filter((e)=>{
@@ -59,9 +66,16 @@ function Playlist({selete,options,genre}) {
     },[options]
   )
 
-  const handleDownLoad =async()=>{
-    // download logic gose here lib call
-    alert('buy')
+  const handleDownLoad =async(element)=>{
+    if(user){
+      const userEmail=user.email
+      const songID=element.id
+      UpdateUserSongs(userEmail,songID)
+      alert('buy')
+    }else{
+      alert('please login or signup')
+    }
+    
   }
   return (
     <div className={styles.contain}>
@@ -80,7 +94,7 @@ function Playlist({selete,options,genre}) {
         song={e}
         />
         </span>:<span>
-        <button onClick={handleDownLoad}>buy</button>
+        <button onClick={()=>{handleDownLoad(e)}}>buy</button>
         </span>}
         </span>
       </div>

@@ -2,7 +2,7 @@
 import { useEffect,useState} from 'react'
 import firebase from "../../db/firebase";
 import { db } from "../../db/firebase";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, setDoc } from "firebase/firestore";
 import PlaylistCard from '../PlaylistCard/PlaylistCard';
 import deletefilefromstorage from '@/app/lib/deletefilefromstorage';
 import getfilename from '@/app/lib/getfilename';
@@ -25,7 +25,16 @@ const handleDelete=async(e)=>{
   deletefilefromstorage(songName,imageName,e)
 }
 const handlePushTosale=async(e)=>{
-alert(e.name)
+  try{
+    const d=new Date();
+    const date=`${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`;
+    const docRef = doc(db, "songs", `${e.id}`);
+    const newData =({...e,voteList:false,date:date})
+    await setDoc(docRef, newData);
+}catch(e) {
+    console.error("Error writing document: ", e);
+  }
+alert(`${e.name} pushed to production`)
 }
   return (
     <div>
