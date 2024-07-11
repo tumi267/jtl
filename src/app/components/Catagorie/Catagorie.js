@@ -11,7 +11,10 @@ function Catagorie() {
         <div className={styles.card_contian}>
             {/* map catgorie */}
             {Genre.map((e,i)=>{return <Link href={`/Playlist/${e}`} key={i}><div >
-            <Image src={'/guitar.jpg'} alt={e} height={200} width={200}/>
+              <div className={styles.image_size}>
+              <Image src={'/guitar.jpg'} alt={e} height={150} width={150}/>
+              </div>
+            
             <p>{e}</p>
             </div>
             </Link>}

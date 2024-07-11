@@ -10,7 +10,7 @@ import Playlist from "../Playlist/Playlist"
 import styles from '../Playlist/PlayList.module.css'
 import PlaylistCard from "../PlaylistCard/PlaylistCard"
 function UserPlaylist() {
-    const {user}=UserState()
+    const {user,setInfo}=UserState()
     const router=useRouter()
     const [filters,setfilters]=useState(null)
     const [data,setData]=useState({
@@ -37,6 +37,8 @@ function UserPlaylist() {
         const results = await Promise.all(songdata);
         const newlist=results.filter(e=>{return e!=undefined})
         setSongList(newlist)
+        // set list of songs for user
+        setInfo(newlist)
        } 
        data()
     },[user?.email])
@@ -45,9 +47,7 @@ function UserPlaylist() {
           router.push('/signin')
         }
       },[user])
-     const handleDownLoad=()=>{
-        alert('download')
-     }
+
   return (
     <>
         <h1>{data?.name.toUpperCase()}</h1>
@@ -59,7 +59,7 @@ function UserPlaylist() {
           <PlaylistCard
           e={e}/>
         <span>
-        <button onClick={handleDownLoad}>download</button>
+        
         </span>
         </div>})}
         </div>

@@ -10,16 +10,18 @@ function Page() {
   return (
     <div>
       <div className={styles.header}>
-      <h1>{params.id}</h1>
+        <h1>{params.id}</h1>
       </div>
-      <Filters
-      options={setfilters}
-      />
-     <Playlist
-     selete={'genre'}
-     genre={params.id}
-     options={filters}
-     />   
+      <div className={styles.content_contain}>
+        <Filters
+        options={setfilters}
+        />
+        <Playlist
+        selete={'genre'}
+        genre={params.id}
+        options={filters}
+        />  
+     </div> 
     </div>
   )
 }

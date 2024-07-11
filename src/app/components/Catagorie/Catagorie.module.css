@@ -3,7 +3,11 @@
 }
 .card_contian{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap:20px;
-    padding: 5px;
+    grid-template-columns: repeat(2,1fr);
+    /* gap:20px;
+    padding: 5px; */
 }
+/* .image_size{
+    height: 200px;
+    width: 200px;
+} */

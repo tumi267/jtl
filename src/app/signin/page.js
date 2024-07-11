@@ -7,7 +7,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "fire
 import { auth } from '../db/firebase'
 function Page() {
   const router = useRouter();
-  const { user, setUser } = UserState();
+  const { user, setUser,setInfo } = UserState();
   const [details, setDetails] = useState({ password: '', email: '', priceplan: '', name: '' });
   const [logger, setLogger] = useState('signin');
   const [confirmPassword, setConfirmPassword] = useState('');

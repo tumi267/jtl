@@ -4,5 +4,5 @@ padding: 0px;
 min-height: calc(100vh - 180px);
 }
 .contain{
-max-width: 1028px;
+width: 100%
 }

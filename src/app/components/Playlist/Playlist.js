@@ -66,17 +66,7 @@ function Playlist({selete,options,genre}) {
     },[options]
   )
 
-  const handleDownLoad =async(element)=>{
-    if(user){
-      const userEmail=user.email
-      const songID=element.id
-      UpdateUserSongs(userEmail,songID)
-      alert('buy')
-    }else{
-      alert('please login or signup')
-    }
-    
-  }
+
   return (
     <div className={styles.contain}>
     
@@ -88,15 +78,10 @@ function Playlist({selete,options,genre}) {
     {/* loading state when loading song */}
     {list.map((e,i)=>{return<div className={styles.audio_card} key={i}>
       <PlaylistCard
-      e={e}/>
-      <span>{selete=='vote'?<span>
-        <Upvote
-        song={e}
-        />
-        </span>:<span>
-        <button onClick={()=>{handleDownLoad(e)}}>buy</button>
-        </span>}
-        </span>
+      e={e}
+      selete={selete}
+      />
+
       </div>
     })}
   
