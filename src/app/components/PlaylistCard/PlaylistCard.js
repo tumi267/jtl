@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import getAudioDuration from "@/app/lib/getduration";
 import { usePathname } from "next/navigation";
 import { UserState } from "@/app/context/context";
+import Upvote from '../upvote/Upvote'
 function PlaylistCard({e,selete}) {
   const {user,info}=UserState()
     const params = usePathname()
