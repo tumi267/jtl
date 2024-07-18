@@ -1,7 +1,7 @@
-.contain{
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-    padding: 20px;
-    border-right: 1px solid black;
-}
+.contain {
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Arrange items vertically */
+    width: 200px; /* Fixed width */
+    padding: 20px; /* Padding inside the container */
+    border-right: 1px solid black; /* Right border with solid black color */
+  }

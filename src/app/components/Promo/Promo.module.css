@@ -1,11 +1,11 @@
-.contain{
+.contain {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between; /* Ensures items are evenly distributed */
     text-align: center;
-    grid-template-columns: repeat(2,1fr);
     gap: 30px;
     padding-left: 10%;
     padding-right: 10%;
     margin-top: 50px;
     padding-bottom: 100px;
-}
+  }

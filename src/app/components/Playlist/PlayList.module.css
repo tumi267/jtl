@@ -1,17 +1,19 @@
 .contain,
 .audio_card,
-.image_discription{
-    display: flex;
+.image_discription {
+  display: flex;
 }
-.contain{
-    display: flex;
-    flex-direction: column;
+
+.contain {
+  flex-direction: column;
 }
-.audio_card{
-    justify-content: space-between;
-    padding-right: 40px;
+
+.audio_card {
+  justify-content: space-between;
+  padding-right: 40px;
 }
-.image_discription{
-    gap: 10px;
-    flex-wrap: wrap;
+
+.image_discription {
+  gap: 10px;
+  flex-wrap: wrap;
 }

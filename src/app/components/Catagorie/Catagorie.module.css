@@ -1,13 +1,20 @@
-.contain{
+.contain {
     text-align: center;
-}
-.card_contian{
+  }
+  
+  .card_contian {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    /* gap:20px;
-    padding: 5px; */
-}
-/* .image_size{
+    grid-template-columns: repeat(2, 1fr); /* Two columns with equal width */
+    /* Uncomment the lines below if you want to add more styling */
+    /* gap: 20px; */ /* Space between grid items */
+    /* padding: 5px; */ /* Padding around grid items */
+  }
+  
+  /* Uncomment the following block if you want to style the image size */
+  /*
+  .image_size {
     height: 200px;
     width: 200px;
-} */
+  }
+  */
+  

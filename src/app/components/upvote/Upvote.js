@@ -1,21 +1,33 @@
-'use client'
-import upvote from "@/app/lib/upvote";
-import { useEffect, useState } from "react"
-function Upvote({song}) {
-    const [count,setCount]=useState(song.votes)
-    const handleVote=async()=>{
-        let newcount=count+1;
-        setCount(newcount);
-       
-    }
-    useEffect(()=>{
-        if(song.votes!==count){
-           upvote(song,count,song.id)
+// Import necessary functions and hooks
+import upvote from "@/app/lib/upvote"; // Function to handle upvoting
+import { useEffect, useState } from "react"; // State management hooks from React
+
+// Define the Upvote component
+function Upvote({ song }) {
+    // State variable to store the current count of votes
+    const [count, setCount] = useState(song.votes);
+
+    // Function to handle voting
+    const handleVote = async () => {
+        let newCount = count + 1; // Increment the count by 1
+        setCount(newCount); // Update the count state
+    };
+
+    // Effect to execute when count state changes
+    useEffect(() => {
+        // Check if the current vote count in the song object is different from the state count
+        if (song.votes !== count) {
+            // Call the upvote function to update the vote count in the database
+            upvote(song, count, song.id);
         }
-    },[count])
-  return (
-    <div><button onClick={()=>{handleVote()}}>vote</button></div>
-  )
+    }, [count]); // Depend on count state change
+
+    // JSX structure for rendering the component
+    return (
+        <div>
+            <button onClick={handleVote}>Vote</button> {/* Button to trigger voting */}
+        </div>
+    );
 }
 
-export default Upvote
+export default Upvote;
