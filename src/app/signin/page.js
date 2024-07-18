@@ -53,6 +53,7 @@ function Page() {
       .catch((error) => {
         const errorMessage = error.message;
         setError(errorMessage);
+        
         console.log(errorMessage);
       })
       console.log('Registration successful');
@@ -71,6 +72,7 @@ function Page() {
       })
       .catch((error) => {
         const errorMessage = error.message;
+        alert('invalid email or password')
         console.log(errorMessage);
       });
   };

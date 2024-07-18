@@ -10,7 +10,7 @@ import Playlist from "../Playlist/Playlist"
 import styles from '../Playlist/PlayList.module.css'
 import PlaylistCard from "../PlaylistCard/PlaylistCard"
 function UserPlaylist() {
-    const {user,setInfo}=UserState()
+    const {user,setInfo,setuserinfo}=UserState()
     const router=useRouter()
     const [filters,setfilters]=useState(null)
     const [data,setData]=useState({
@@ -26,6 +26,7 @@ function UserPlaylist() {
           body:JSON.stringify({user:user?.email})
         })
         const listinfo=await list.json()
+        setuserinfo(listinfo.user)
         setData(listinfo.user)
         const songdata=listinfo.songlist.map(async(e)=>{
           

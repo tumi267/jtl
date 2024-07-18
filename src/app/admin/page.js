@@ -6,11 +6,12 @@ function Page() {
     <div>
       <h1>Admin</h1>
         
-      {/* <AddSong/> */}
+      <AddSong/>
 
-      {/* <RemoveSong/> */}
+      <RemoveSong/>
       
       <AdminVotes/>
+      
       {/* <div>states</div>
 
       <div>Q&A</div> */}

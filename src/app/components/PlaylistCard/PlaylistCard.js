@@ -35,7 +35,6 @@ function PlaylistCard({e,selete}) {
  const renderButton = (songUrl) => {
   if(info){
     const songExists = info.some(el => el.songUrl == songUrl);
-    console.log(songExists)
     return songExists 
       ? <button onClick={handleDownLoad}>download</button>
       : <button onClick={() => { handleperchus(e) }}>buy</button>;
