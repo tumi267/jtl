@@ -1,3 +1,4 @@
+'use client'
 // Import necessary libraries and functions
 import formatDuration from "@/app/lib/formatDuration"; // Function to format audio duration
 import search from "@/app/lib/search"; // Function to search for songs

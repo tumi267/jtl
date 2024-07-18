@@ -16,7 +16,7 @@ function Nav() {
       {/* Search bar */}
       <span className={styles.search}>
         <input type='text' className={styles.search_bar} />
-        <button>search</button>
+        <button onClick={()=>{alert('search')}}>search</button>
       </span>
       <br />
 

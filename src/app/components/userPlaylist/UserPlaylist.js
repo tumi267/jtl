@@ -1,3 +1,4 @@
+'use client'
 // Import necessary modules and components
 import { useEffect, useState } from "react"; // State management hooks from React
 import Filters from "../Filters/Filters"; // Component for filtering songs

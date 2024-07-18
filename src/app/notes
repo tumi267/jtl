@@ -1,40 +1,31 @@
 todo sprint one
 
-
 audio player make more appiling
-
+{
 look into wave surfer
-
-breakpoints for smaller screen size
-
-db
+}
 
 site for licensing
 
 payment structure 
-
+{
 3 trier
 free
 gold
 platinum
-
-voting for is next group of song in categorise
-
 higher tire has first access
-
 access to producer/ artist
+}
 
 spread sheet of artist and rates
+db of contribution from artist
+contract generate
 
 answer questions
-
-db of contribution from artist
 
 custom pricing per song 
 
 usage research
-
-contract generate
 
 pricing page
     >
@@ -43,3 +34,10 @@ music page
     >
      {filters}
      {infinatie scroll}
+
+loading state
+
+admin menu
+password display
+nav search >look into vector embeding
+style pricing plan

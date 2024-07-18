@@ -5,13 +5,13 @@ function Page() {
   return (
     <div>
       <h1>Admin</h1>
-        
+        {/* menu */}
       <AddSong/>
 
       <RemoveSong/>
       
       <AdminVotes/>
-      
+
       {/* <div>states</div>
 
       <div>Q&A</div> */}

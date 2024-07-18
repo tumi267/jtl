@@ -1,64 +1,66 @@
-import { useRouter } from 'next/navigation';
-import styles from './signin.module.css';
-import { useEffect, useState } from 'react';
-import { UserState } from '../context/context';
+'use client'
+import { useRouter } from 'next/navigation'
+import styles from './signin.module.css'
+import { useEffect, useState } from 'react'
+import { UserState } from '../context/context'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../db/firebase';
-
+import { auth } from '../db/firebase'
 function Page() {
-  const router = useRouter();
-  const { user, setUser } = UserState();
+  // Initialize necessary hooks and state variables
+  const router = useRouter(); // Next.js router hook
+  const { user, setUser } = UserState(); // User context state
+  const [details, setDetails] = useState({ password: '', email: '', priceplan: '', name: '' }); // Form input details
+  const [logger, setLogger] = useState('signin'); // State to toggle between signin and register mode
+  const [confirmPassword, setConfirmPassword] = useState(''); // State for confirming password
+  const [isEmailValid, setIsEmailValid] = useState(false); // State to validate email format
+  const [isPasswordValid, setIsPasswordValid] = useState(true); // State to validate password format
+  const [doPasswordsMatch, setDoPasswordsMatch] = useState(true); // State to check if passwords match
 
-  // State variables for form inputs and validation
-  const [details, setDetails] = useState({ password: '', email: '', priceplan: '', name: '' });
-  const [logger, setLogger] = useState('signin');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [isEmailValid, setIsEmailValid] = useState(false);
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [doPasswordsMatch, setDoPasswordsMatch] = useState(true);
-
-  // Function to handle email input change and validate email
+  // Handle email input change and validate format
   const handleEmailChange = (e) => {
     const email = e.target.value;
     setDetails({ ...details, email });
+    // Simple regex for email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setIsEmailValid(emailRegex.test(email));
   };
 
-  // Function to handle password input change and validate password
+  // Handle password input change and validate format
   const handlePasswordChange = (e) => {
     const password = e.target.value;
     setDetails({ ...details, password });
+    // Password must be at least 8 characters, include at least one special character and one number
     const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/;
     setIsPasswordValid(passwordRegex.test(password));
     setDoPasswordsMatch(password === confirmPassword);
   };
 
-  // Function to handle confirm password input change and validate matching passwords
+  // Handle confirm password input change and validate match with password
   const handleConfirmPasswordChange = (e) => {
     const confirmPassword = e.target.value;
     setConfirmPassword(confirmPassword);
     setDoPasswordsMatch(details.password === confirmPassword);
   };
 
-  // Function to handle user registration
+  // Handle registration form submission
   const handleReg = (e) => {
     e.preventDefault();
     if (isEmailValid && isPasswordValid && doPasswordsMatch) {
+      // Proceed with registration
       createUserWithEmailAndPassword(auth, details.email, details.password)
         .then((userCredential) => {
           console.log('Registration successful');
-          setDetails({ password: '', email: '', priceplan: '', name: '' });
-          setConfirmPassword('');
+          setDetails({ password: '', email: '', priceplan: '', name: '' }); // Clear form inputs
+          setConfirmPassword(''); // Clear confirm password
           const userdetails = userCredential.user;
-          setUser(userdetails);
-          // Redirect to profile page or any other route after successful registration
+          setUser(userdetails); // Set user context
+          // Redirect to profile page
           router.push('/Profile');
         })
         .catch((error) => {
           const errorMessage = error.message;
-          console.log(errorMessage);
-          // Handle error messages or display to the user
+          console.log(errorMessage); // Log error message
+          // Handle error display or feedback
         });
     } else {
       // Show error message or handle invalid input
@@ -66,64 +68,65 @@ function Page() {
     }
   };
 
-  // Function to handle user sign-in
+  // Handle signin form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, details.email, details.password)
       .then((userCredential) => {
         const userdetails = userCredential.user;
-        setUser(userdetails);
-        // Redirect to profile page or any other route after successful sign-in
+        setUser(userdetails); // Set user context
+        // Redirect to profile page
         router.push('/Profile');
       })
       .catch((error) => {
         const errorMessage = error.message;
-        alert('Invalid email or password');
-        console.log(errorMessage);
+        alert('Invalid email or password'); // Alert for incorrect credentials
+        console.log(errorMessage); // Log error message
       });
   };
 
-  // Effect to redirect user to profile page if already authenticated
+  // Effect to redirect to profile page if user is logged in
   useEffect(() => {
     if (user) {
       router.push('/Profile');
     }
   }, [user, router]);
 
-  return (
-    <div className={styles.contain}>
-      {logger === 'signin' ? (
-        <form className={styles.input_form} onSubmit={handleSubmit}>
-          <input type='text' placeholder='Email' onChange={handleEmailChange} />
-          <input type='password' placeholder='Password' onChange={handlePasswordChange} />
-          <button type='submit'>Sign In</button>
-          <br />
-          <button type='button' onClick={() => setLogger('register')}>Register</button>
-        </form>
-      ) : (
-        <form className={styles.input_form} onSubmit={handleReg}>
-          <input type='text' placeholder='Email' onChange={handleEmailChange} />
-          <input type='text' placeholder='Name' onChange={(e) => setDetails({ ...details, name: e.target.value })} />
-          <select name="plan" value={details.priceplan} onChange={(e) => setDetails({ ...details, priceplan: e.target.value })}>
-            <option value="" disabled>Select a plan</option>
-            <option value="plan1">Plan 1</option>
-            <option value="plan2">Plan 2</option>
-            <option value="plan3">Plan 3</option>
-          </select>
-          <input type='password' placeholder='Password' onChange={handlePasswordChange} />
-          {!isPasswordValid && <p>Password must be at least 8 characters, include at least one special character and one number</p>}
-          <input type='password' placeholder='Confirm Password' onChange={handleConfirmPasswordChange} />
-          {!doPasswordsMatch && <p>Passwords do not match</p>}
-          <button type='submit' disabled={!isEmailValid || !isPasswordValid || !doPasswordsMatch}>Register</button>
-          <br />
-          <button type='button' onClick={() => setLogger('signin')}>Sign In</button>
-        </form>
-      )}
-    </div>
-  );
-}
+    // JSX structure for the signin/register form
+    return (
+      <div className={styles.contain}>
+        {logger === 'signin' ? ( // Conditional rendering based on logger state
+          <form className={styles.input_form} onSubmit={handleSubmit}>
+            <input type='text' placeholder='email' onChange={handleEmailChange} />
+            <input type='password' placeholder='password' onChange={handlePasswordChange} />
+            <button type='submit'>Sign In</button>
+            <br />
+            <button type='button' onClick={() => setLogger('register')}>Sign Up</button>
+          </form>
+        ) : (
+          <form className={styles.input_form} onSubmit={handleReg}>
+            <input type='text' placeholder='email' onChange={handleEmailChange} />
+            <input type='text' placeholder='name' onChange={(e) => setDetails({ ...details, name: e.target.value })} />
+            <select name="plan" value={details.priceplan} onChange={(e) => setDetails({ ...details, priceplan: e.target.value })}>
+              <option value="" disabled>Select a plan</option>
+              <option value="plan1">Plan 1</option>
+              <option value="plan2">Plan 2</option>
+              <option value="plan3">Plan 3</option>
+            </select>
+            <input type='password' placeholder='password' onChange={handlePasswordChange} />
+            {isPasswordValid == false && <p>Password must be at least 8 characters, include at least one special character and one number</p>}
+            <input type='password' placeholder='confirm password' onChange={handleConfirmPasswordChange} />
+            {doPasswordsMatch == false && <p>Passwords do not match</p>}
+            <button type='submit' disabled={!isEmailValid || !isPasswordValid || !doPasswordsMatch}>Register</button>
+            <br />
+            <button type='button' onClick={() => setLogger('signin')}>Sign In</button>
+          </form>
+        )}
+      </div>
+    );
+  }
 
-export default Page;
+export default Page
 
 
 
