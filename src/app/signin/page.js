@@ -15,7 +15,7 @@ function Page() {
   const [isEmailValid, setIsEmailValid] = useState(false); // State to validate email format
   const [isPasswordValid, setIsPasswordValid] = useState(true); // State to validate password format
   const [doPasswordsMatch, setDoPasswordsMatch] = useState(true); // State to check if passwords match
-
+  const [passIsDisplay,setPassIsDisplay]=useState(false)
   // Handle email input change and validate format
   const handleEmailChange = (e) => {
     const email = e.target.value;
@@ -91,14 +91,20 @@ function Page() {
       router.push('/Profile');
     }
   }, [user, router]);
-
+  const displaypass=(e)=>{
+    e.preventDefault()
+    setPassIsDisplay((prev) => !prev)
+  }
     // JSX structure for the signin/register form
     return (
       <div className={styles.contain}>
         {logger === 'signin' ? ( // Conditional rendering based on logger state
           <form className={styles.input_form} onSubmit={handleSubmit}>
             <input type='text' placeholder='email' onChange={handleEmailChange} />
-            <input type='password' placeholder='password' onChange={handlePasswordChange} />
+            <span>
+            <input type={passIsDisplay==false?'password':'text'} placeholder='password' onChange={handlePasswordChange} />
+            <button type='button' onClick={displaypass}>display password</button>
+            </span>
             <button type='submit'>Sign In</button>
             <br />
             <button type='button' onClick={() => setLogger('register')}>Sign Up</button>

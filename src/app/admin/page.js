@@ -1,20 +1,25 @@
+'use client'
 import AddSong from "../components/AddSong/AddSong"
 import RemoveSong from "../components/RemoveSong/RemoveSong"
 import AdminVotes from "../components/AdminVotes/AdminVotes"
+import AdminMenu from "../components/AdminMenu/AdminMenu"
+import { useState } from "react"
 function Page() {
+  const [selected,setSelected]=useState(0)
   return (
     <div>
       <h1>Admin</h1>
-        {/* menu */}
-      <AddSong/>
+      <AdminMenu
+      select={setSelected} />
+      {selected==0&&<AddSong/>}
 
-      <RemoveSong/>
+      {selected==1&&<RemoveSong/>}
       
-      <AdminVotes/>
+      {selected==2&&<AdminVotes/>}
 
-      {/* <div>states</div>
+      {selected==3&&<div>states</div>}
 
-      <div>Q&A</div> */}
+      {selected==4&&<div>Q&A</div>}
       
     </div>
   )
