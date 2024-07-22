@@ -14,10 +14,12 @@ export default function Home() {
         <Promo/>
         <Catagorie/>
         <PricingPlan/>
+        <div className={styles.playlists}>
         <Playlist
         selete={'fulllist'}
         options={null}
         />
+        </div>
       </div>
     </main>
   )

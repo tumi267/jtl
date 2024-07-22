@@ -6,3 +6,6 @@ min-height: calc(100vh - 180px);
 .contain{
 width: 100%
 }
+.playlists{
+    padding: 0% 5%;
+}

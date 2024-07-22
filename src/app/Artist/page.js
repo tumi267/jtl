@@ -2,7 +2,10 @@
 import artist from '../db/artist.json'
 function page() {
     const artistlist=artist.artist
-    
+    const concatArtist=()=>{
+      // still need tothink about this
+      alert('btn clicked')
+    }
   return (
     <div>
         {artistlist.map((e,i)=>{
@@ -10,7 +13,7 @@ function page() {
                 <h2>{e.name}</h2>
                 {/* will be a arry */}
                 <p>{e.song}</p>
-                <button>click here to contact</button>
+                <button onClick={concatArtist}>click here to contact</button>
             </div>
         })}
     </div>

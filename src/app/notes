@@ -13,6 +13,7 @@ gold
 platinum
 higher tire has first access
 access to producer/ artist
+custom pricing per song 
 }
 
 spread sheet of artist and rates
@@ -21,19 +22,13 @@ contract generate
 
 answer questions
 
-custom pricing per song 
-
 usage research
 
-pricing page
-    >
-     {pricing breackdown}
 music page
     >
-     {filters}
      {infinatie scroll}
 
 loading state
 
 nav search >look into vector embeding
-style pricing plan
+

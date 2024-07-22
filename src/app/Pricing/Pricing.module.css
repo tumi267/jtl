@@ -3,15 +3,11 @@
 }
 .breakdown{
     display: flex;
-    gap: 65px;
+    gap: 20px;
     padding: 10px;
-    margin-left: 20px;
-    margin-right: 20px
+    justify-content: space-evenly;
+    text-align: center;
 }
 .header{
     text-align: center;
-}
-.breakdown_content{
-    width: 270px;
-    border: 2px solid black;
 }
