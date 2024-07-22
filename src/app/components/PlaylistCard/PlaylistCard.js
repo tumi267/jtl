@@ -10,12 +10,13 @@ import Upvote from '../upvote/Upvote';
 import UpdateUserSongs from "@/app/lib/UpdateUserSongs";
 
 function PlaylistCard({ e, selete }) {
-  const { user, info } = UserState();
+  const { user, info,userinfo } = UserState();
   const params = usePathname();
 
   useEffect(() => {
     const getDuration = async () => {
       const duration = await getAudioDuration(e.songUrl);
+      
       // You can use 'duration' here if needed
     };
     getDuration();
@@ -49,7 +50,12 @@ function PlaylistCard({ e, selete }) {
       return <button onClick={() => { handlePurchase(e) }}>Buy</button>;
     }
   };
-
+  const contactArtist=()=>{
+    // still need to figure out what to do here
+    // email artist
+    // or dash board notice
+    alert('contact artist')
+  }
   return (
     <div className={styles.image_discription}>
       <Image src={e.imageUrl} alt={e.name} width={100} height={100} />
@@ -64,6 +70,7 @@ function PlaylistCard({ e, selete }) {
             ? <Upvote song={e} />
             : renderButton(e.songUrl)
           }
+          {(userinfo?.priceplan=='gold'||userinfo?.priceplan=='platinum')&&<button onClick={contactArtist}>contact artist</button>}
         </span>
       </div>
       <audio controls controlsList='nodownload'>

@@ -1,17 +1,13 @@
 'use client'
-import Image from 'next/image'
+
 import styles from './PlayList.module.css'
 import { useEffect, useState } from 'react'
-import Upvote from '../upvote/Upvote'
 import comapreDate from '@/app/lib/compareDate'
-import formatDuration from '@/app/lib/formatDuration'
 import getAudioDuration from '@/app/lib/getduration'
 import PlaylistCard from '../PlaylistCard/PlaylistCard'
-import { UserState } from '@/app/context/context'
-import UpdateUserSongs from '@/app/lib/UpdateUserSongs'
 
 function Playlist({ selete, options, genre }) {
-  const { user } = UserState()
+
   const [list, setList] = useState([])
 
   useEffect(() => {
