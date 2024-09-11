@@ -1,3 +1,6 @@
 {
-    "genre":["hiphop","rnb","piano","jazz"]
+    "genre":[{"name":"hiphop","image":"/hiphop.png"},
+    {"name":"rnb","image":"/R&B.png"},
+    {"name":"piano","image":"/piano.png"},
+    {"name":"jazz","image":"/jazz.png"}]
 }
