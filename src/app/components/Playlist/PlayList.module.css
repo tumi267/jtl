@@ -17,3 +17,60 @@
   gap: 10px;
   flex-wrap: wrap;
 }
+.btn_buy {
+  -webkit-border-radius: 12;
+  -moz-border-radius: 12;
+  border-radius: 12px;
+  -webkit-box-shadow: 0px 4px 8px #666666;
+  -moz-box-shadow: 0px 4px 8px #666666;
+  box-shadow: 0px 4px 8px #666666;
+  font-family: Georgia;
+  color: #000000;
+  font-size: 15px;
+  background: #3cd934;
+  padding: 5px 10px;
+  border: solid #040505 1px;
+  text-decoration: none;
+}
+.contact_artist_btn {
+  background-color: #6A5ACD; /* Soft purple for creativity */
+  color: white; /* White text */
+  padding: 8px 15px; /* Button padding */
+  border: none; /* Remove border */
+  border-radius: 50px; /* Full-rounded corners for a soft look */
+  font-size: 16px; /* Font size */
+  font-family: 'Arial', sans-serif; /* Clean font */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+.cardLayout,
+.containBtn{
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.cardLayout{
+  flex-wrap: wrap;
+}
+.containBtn{
+  gap: 3.2em;
+}
+.custom_audio_player {
+  max-width: 12em; 
+  border-radius: 10px; /* Rounded corners */
+  padding: 10px; /* Add some padding around */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  outline: none; /* Remove default outline */
+}
+
+.custom_audio_player::-webkit-media-controls-panel {
+  background-color: #6A5ACD; /* Change control bar background for Webkit browsers */
+}
+
+
+
+.custom_audio_player:focus {
+  outline: none; /* Remove focus outline */
+  box-shadow: 0 0 6px rgba(106, 90, 205, 0.6); /* Add focus shadow */
+}

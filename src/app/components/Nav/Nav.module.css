@@ -24,11 +24,24 @@
   align-items: center; /* Center align items vertically */
   z-index: 10; /* Stack above other content */
 }
-
+.search_contain{
+  display: flex;
+  justify-content: space-between;
+  width: 69%;
+  
+}
 .search {
   display: flex; /* Flexbox layout */
+  width: 42em;
 }
-
+@media (max-width: 768px){
+  .search_contain{
+    width: 95%;
+  }
+  .search {
+    width: 18em;
+  }
+}
 .search_bar {
   width: 100%; /* Full width for the search bar */
 }

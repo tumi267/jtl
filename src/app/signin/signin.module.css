@@ -12,3 +12,10 @@
     padding: 60px;
 
 }
+.contain_pass{
+    display: flex;
+    align-items: center;
+}
+.input_password{
+    width: 95%;
+}

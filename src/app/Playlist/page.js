@@ -17,10 +17,10 @@ function Page() {
       />
       <div>
       {/* menu */}
-      <div>
-        <button onClick={()=>{setSelect(playlists)}}>Playlist</button>
-        <button onClick={()=>{setSelect(vote)}}>Recently Added</button>
-        <button onClick={()=>{setSelect(Recently)}}>vote</button>
+      <div className={styles.playlist_menu}>
+        <button className={styles.btn} onClick={()=>{setSelect(playlists)}}>Playlist</button>
+        <button className={styles.btn}  onClick={()=>{setSelect(vote)}}>Recently Added</button>
+        <button className={styles.btn}  onClick={()=>{setSelect(Recently)}}>vote</button>
       </div>
       {/* selected options */}
       {/* vote */}

@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import { UserState } from "@/app/context/context";
 import Upvote from '../upvote/Upvote';
 import UpdateUserSongs from "@/app/lib/UpdateUserSongs";
-
+import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
 function PlaylistCard({ e, selete }) {
   const { user, info,userinfo } = UserState();
   const params = usePathname();
@@ -44,10 +44,10 @@ function PlaylistCard({ e, selete }) {
     if (info) {
       const songExists = info.some(el => el.songUrl === songUrl);
       return songExists
-        ? <button onClick={handleDownload}>Download</button>
-        : <button onClick={() => { handlePurchase(e) }}>Buy</button>;
+        ? <FileDownloadRoundedIcon onClick={handleDownload}/>
+        : <button className={styles.btn_buy} onClick={() => { handlePurchase(e) }}>Buy</button>;
     } else {
-      return <button onClick={() => { handlePurchase(e) }}>Buy</button>;
+      return <button className={styles.btn_buy} onClick={() => { handlePurchase(e) }}>Buy</button>;
     }
   };
   const contactArtist=()=>{
@@ -58,24 +58,30 @@ function PlaylistCard({ e, selete }) {
   }
   return (
     <div className={styles.image_discription}>
-      <Image src={e.imageUrl} alt={e.name} width={100} height={100} />
+      <Image src={e.imageUrl} alt={e.name} width={110} height={110} />
       <div>
+        <div className={styles.cardLayout}>
+        <div>
         <p>{e.name.replace(pattern, '')}</p>
         <p>{formatDuration(e.duration)}</p>
         <p>{e.mood}</p>
         <p>{e.bpm}</p>
+        </div>
+        <audio className={styles.custom_audio_player} controls controlsList='nodownload'>
+        <source src={e.songUrl} />
+        </audio>
+        </div>
         {params === '/admin' && <p>Votes: {e.votes}</p>}
-        <span>
+        <span className={styles.containBtn}>
           {selete === 'vote'
             ? <Upvote song={e} />
             : renderButton(e.songUrl)
           }
-          {(userinfo?.priceplan=='gold'||userinfo?.priceplan=='platinum')&&<button onClick={contactArtist}>contact artist</button>}
+          {(userinfo?.priceplan=='gold'||userinfo?.priceplan=='platinum')&&<button className={styles.contact_artist_btn} onClick={contactArtist}>contact artist</button>}
         </span>
+
       </div>
-      <audio controls controlsList='nodownload'>
-        <source src={e.songUrl} />
-      </audio>
+
     </div>
   );
 }

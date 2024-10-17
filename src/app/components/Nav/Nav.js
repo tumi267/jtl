@@ -2,12 +2,13 @@
 import Link from 'next/link';
 import styles from './Nav.module.css';
 import { UserState } from '@/app/context/context';
-
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 function Nav() {
   const { userinfo } = UserState(); // Fetch user information from context
 
   return (
     <div className={styles.main_nav}>
+      <div className={styles.search_contain}>
       {/* Logo with link to home */}
       <Link href={'/'}>
         <h3 className={styles.logo}>JTL</h3>
@@ -16,10 +17,9 @@ function Nav() {
       {/* Search bar */}
       <span className={styles.search}>
         <input type='text' className={styles.search_bar} />
-        <button onClick={()=>{alert('search')}}>search</button>
+        <SearchRoundedIcon onClick={()=>{alert('search')}}/>
       </span>
-      <br />
-
+      </div>
       {/* Navigation links */}
       <div className={styles.main_nav_sub}>
         <Link href={'/'}>

@@ -10,8 +10,16 @@
     gap: 20px;
     /* margin-top: 20px;
     margin-bottom: 20px; */
+    
   }
-  
+  @media (max-width: 768px) {
+    .card_contain {
+      grid-template-columns: repeat(1, 1fr); /* 1 column on mobile */
+    }
+    .card_details{
+      margin: 0% auto;
+    }
+  }
   .card {
     margin-top: 5px;
     margin-bottom: 30px;
@@ -26,7 +34,35 @@
   .card_details {
     padding: 5% 2%;
     height: 350px;
+    background: linear-gradient(135deg, #5e42d7, #e9ecef ); 
+    padding: 50px;
+    border-radius: 12%;
   }
   .card_details_brackdown{
     padding: 0% 2%;
+  }
+  .btn_gold,
+  .free_btn,
+  .silver_btn{
+  padding: 12px 24px; /* Button padding */
+  border: none; /* Remove border */
+  border-radius: 6px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  border: 1px solid ;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+  }
+
+  .btn_gold{
+  background-color: #FFD700; /* Gold color */
+  color: white; /* Text color */
+  }
+  .free_btn{
+    background-color: #28a745; /* Green color for free */
+    color: white; /* White text */
+  }
+  .silver_btn{
+  background-color: #E5E4E2; /* Platinum color */
+  color: #333333;
   }

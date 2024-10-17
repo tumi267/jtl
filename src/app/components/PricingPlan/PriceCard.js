@@ -10,7 +10,7 @@ function PriceCard({ title, detail, arr }) {
         <h2>{title}</h2>
         <p>{detail}</p>
         {/* change to paygate logic */}
-        <button onClick={(()=>{router.push('/Pricing')})}>Select Plan</button>
+        <button className={title=='Free'?styles.free_btn:title=='Gold'?styles.btn_gold:title=='Platinum'&&styles.silver_btn} onClick={(()=>{router.push('/Pricing')})}>Select Plan</button>
         <p>{arr}</p>
       </div>
     </div>

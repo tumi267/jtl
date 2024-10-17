@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 import { UserState } from '../context/context'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../db/firebase'
+import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
+import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
 function Page() {
   // Initialize necessary hooks and state variables
   const router = useRouter(); // Next.js router hook
@@ -101,9 +103,10 @@ function Page() {
         {logger === 'signin' ? ( // Conditional rendering based on logger state
           <form className={styles.input_form} onSubmit={handleSubmit}>
             <input type='text' placeholder='email' onChange={handleEmailChange} />
-            <span>
-            <input type={passIsDisplay==false?'password':'text'} placeholder='password' onChange={handlePasswordChange} />
-            <button type='button' onClick={displaypass}>display password</button>
+            <span className={styles.contain_pass}>
+            <input className={styles.input_password} type={passIsDisplay==false?'password':'text'} placeholder='password' onChange={handlePasswordChange} />
+            {passIsDisplay==true?<VisibilityOffRoundedIcon onClick={displaypass}/>:
+            <VisibilityRoundedIcon  onClick={displaypass}/>}
             </span>
             <button type='submit'>Sign In</button>
             <br />
