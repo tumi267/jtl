@@ -9,8 +9,11 @@ import { UserState } from "@/app/context/context";
 import Upvote from '../upvote/Upvote';
 import UpdateUserSongs from "@/app/lib/UpdateUserSongs";
 import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
+import contactArtisit from "@/app/lib/contactArtisit";
 function PlaylistCard({ e, selete }) {
   const { user, info,userinfo } = UserState();
+
+
   const params = usePathname();
 
   useEffect(() => {
@@ -50,11 +53,19 @@ function PlaylistCard({ e, selete }) {
       return <button className={styles.btn_buy} onClick={() => { handlePurchase(e) }}>Buy</button>;
     }
   };
-  const contactArtist=()=>{
+  const contactArtist=async ()=>{
     // still need to figure out what to do here
     // email artist
     // or dash board notice
-    alert('contact artist')
+    try{
+      const res=contactArtisit(e,user,userinfo)
+      const msg= await res;
+      alert(msg)
+    }
+    catch{
+      alert('opps something went wrong')
+    }
+
   }
   return (
     <div className={styles.image_discription}>
