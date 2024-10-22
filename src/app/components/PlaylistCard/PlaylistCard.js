@@ -39,8 +39,35 @@ function PlaylistCard({ e, selete }) {
     }
   };
 
-  const handleDownload = () => {
-    alert('Download initiated!');
+  const handleDownload = async() => {
+    const song=await fetch('/api/downloadflie',{
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({e})
+    })
+    if (song.ok) {
+      // Create a blob from the response
+      const blob = await song.blob();
+      
+      // Create a temporary URL for the blob
+      const downloadUrl = window.URL.createObjectURL(blob);
+      
+      // Create a link element and trigger the download
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = 'downloaded-song.mp3'; // Change the filename if necessary
+      document.body.appendChild(link);
+      link.click(); // Trigger the download
+      document.body.removeChild(link); // Clean up the link
+      window.URL.revokeObjectURL(downloadUrl); // Release the object URL
+    } else {
+      console.error('Failed to download file');
+    }
+    // Trigger the file download
+
+    // alert('Download initiated!');
   };
 
   const renderButton = (songUrl) => {

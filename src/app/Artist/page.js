@@ -1,6 +1,7 @@
 'use client'
 import artist from '../db/artist.json'
 function page() {
+  /* this page is in qeustion */
     const artistlist=artist.artist
     const concatArtist=()=>{
       // still need tothink about this
