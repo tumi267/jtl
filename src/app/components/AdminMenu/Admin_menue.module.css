@@ -1,0 +1,17 @@
+.contain{
+    display: flex;
+    align-items: center;
+    margin: 0.5em 30%;
+}
+@media (max-width:785px){
+    .contain{
+        margin: 0.5em 5%;
+    }
+}
+.btn{
+    background-color: blue;
+    border-radius: 12%;
+    height: 60px;
+    width:80px;
+    color:#ffff;
+}

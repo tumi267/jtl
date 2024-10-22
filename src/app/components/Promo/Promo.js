@@ -5,7 +5,7 @@ function Promo() {
   return (
     <div className={styles.contain}>
       <Image src={'/guitar.jpg'} alt="guitar" height={412} width={455} />
-      <h2>30 new sounds added every month. Vote on what will be in the library.</h2>
+      <h2 className={styles.text_promo}>new sounds added every month. Vote on what will be in the library.</h2>
     </div>
   );
 }

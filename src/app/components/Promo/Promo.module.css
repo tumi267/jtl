@@ -1,11 +1,17 @@
 .contain {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* Ensures items are evenly distributed */
-    text-align: center;
+    justify-content: space-between; 
     gap: 30px;
     padding-left: 10%;
     padding-right: 10%;
     margin-top: 50px;
     padding-bottom: 100px;
+    align-items: center;
+    text-align: center;
+  }
+  .text_promo{
+    width:50%;
+    text-align: center;
+    margin: 0% auto;
   }

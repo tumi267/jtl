@@ -4,13 +4,16 @@ import RemoveSong from "../components/RemoveSong/RemoveSong"
 import AdminVotes from "../components/AdminVotes/AdminVotes"
 import AdminMenu from "../components/AdminMenu/AdminMenu"
 import { useState } from "react"
+import styles from './admin.module.css'
 function Page() {
   const [selected,setSelected]=useState(0)
   return (
-    <div>
-      <h1>Admin</h1>
+    <div className={styles.contain}>
+      <h1 className={styles.heading}>Admin</h1>
       <AdminMenu
+      className={styles.menu}
       select={setSelected} />
+      <div className={styles.content}>
       {selected==0&&<AddSong/>}
 
       {selected==1&&<RemoveSong/>}
@@ -20,7 +23,7 @@ function Page() {
       {selected==3&&<div>states</div>}
 
       {selected==4&&<div>Q&A</div>}
-      
+      </div>
     </div>
   )
 }

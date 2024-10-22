@@ -4,6 +4,8 @@ import styles from './Nav.module.css';
 import { UserState } from '@/app/context/context';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { useState } from 'react';
+import PlaylistCard from '../PlaylistCard/PlaylistCard';
+
 function Nav() {
   const { userinfo } = UserState(); // Fetch user information from context
   const [searchInput,setSearchInput]=useState('')
@@ -21,6 +23,10 @@ function Nav() {
     console.log(res.list)
     setList(res.list)
   }
+
+  const closeModal = () => {
+    setList([]); // Reset the list to empty when clicking outside modal content
+  };
   return (
     <div className={styles.main_nav}>
       <div className={styles.search_contain}>
@@ -58,12 +64,14 @@ function Nav() {
       </div>
     {/* Modal to display search results */}
       {list.length > 0 && (
-        <div className={`${styles.model} ${list.length > 0 ? styles.visible : ''}`}>
-          <div className={styles.modal_content}>
+        <div onClick={closeModal} className={`${styles.model} ${list.length > 0 ? styles.visible : ''}`}>
+          <div className={styles.modal_content} onClick={(e) => e.stopPropagation()}>
             <h3>Search Results</h3>
             <ul>
               {list.map((item, index) => (
-                <li key={index}>{item.name}</li> // Assuming each item has a 'name' property
+                <li key={index}>
+                <PlaylistCard e={item} selete={'fulllist'} />
+                </li>
               ))}
             </ul>
           </div>
