@@ -51,3 +51,31 @@
   text-align: center; /* Center align text */
   cursor: pointer; /* Cursor pointer on hover */
 }
+.model{
+  position: fixed;           /* Position the modal fixed to the viewport */
+  top: 0;                   /* Align to the top */
+  left: 0;                  /* Align to the left */
+  width: 100vw;             /* Full width */
+  height: 100vh;            /* Full height */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for the modal */
+  backdrop-filter: blur(10px); /* Apply blur effect to the background */
+  display: flex;            /* Use flexbox for centering content */
+  align-items: center;      /* Center content vertically */
+  justify-content: center;  /* Center content horizontally */
+  z-index: 1000;           /* Ensure it appears above other elements */
+  visibility: hidden;       /* Initially hidden */
+  opacity: 0;               /* Initially invisible */
+  transition: visibility 0s, opacity 0.3s ease;
+}
+.model.visible {
+  visibility: visible; /* Show the modal */
+  opacity: 1;         /* Fade in */
+}
+
+.modal_content {
+  background: white; /* Ensure the content is visible against the background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: black;
+}
