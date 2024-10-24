@@ -12,7 +12,7 @@ export async function POST(request) {
         pass: 'kfrn ltjv htyh plsf', // Your email password or app-specific password
       },
     });
-console.log(userinfo)
+
     // Function to send email
     const mailOptions = {
       from: 'jtllibary@gmail.com', // Sender's email address
@@ -24,7 +24,7 @@ console.log(userinfo)
     try {
       // Send the email
       const info = await transporter.sendMail(mailOptions);
-      console.log('Email sent successfully:', info.response);
+      
      
       return NextResponse.json({msg:'Email sent successfully',status:200})
     } catch (error) {

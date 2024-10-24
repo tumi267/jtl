@@ -64,7 +64,6 @@ export async function POST(request) {
     (value, index, self) =>
       index === self.findIndex((doc) => doc.id === value.id) // Ensure unique by document ID
   );
-  console.log(filteredUniqueList)
 
   return NextResponse.json({ list: filteredUniqueList }, { status: 200 });
 }

@@ -9,7 +9,7 @@ async function contactArtisit(artist,user,userinfo) {
         });
     
         const result = await response.json();
-        console.log(result);
+      
         return result.msg
       } catch (error) {
         console.error('Error sending email:', error);

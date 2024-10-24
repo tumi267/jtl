@@ -51,7 +51,7 @@ function Page() {
       // Proceed with registration
       createUserWithEmailAndPassword(auth, details.email, details.password)
         .then((userCredential) => {
-          console.log('Registration successful');
+    
           setDetails({ password: '', email: '', priceplan: '', name: '' }); // Clear form inputs
           setConfirmPassword(''); // Clear confirm password
           const userdetails = userCredential.user;
