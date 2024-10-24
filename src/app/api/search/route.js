@@ -8,17 +8,14 @@ export async function POST(request) {
 
   // Create queries for "name" field
   const qName = query(collection(db, "songs"), where("name", "<=", searchInput));
-  const qName2 = query(collection(db, "songs"), where("name", ">=", searchInput));
   const qName3 = query(collection(db, "songs"), where("name", "==", searchInput)); // Equality condition for name
 
   // Create queries for "genre" field
   const qGenre = query(collection(db, "songs"), where("genre", "<=", searchInput));
-  const qGenre2 = query(collection(db, "songs"), where("genre", ">=", searchInput));
   const qGenre3 = query(collection(db, "songs"), where("genre", "==", searchInput)); // Equality condition for genre
 
   // Create queries for "mood" field
   const qMood = query(collection(db, "songs"), where("mood", "<=", searchInput));
-  const qMood2 = query(collection(db, "songs"), where("mood", ">=", searchInput));
   const qMood3 = query(collection(db, "songs"), where("mood", "==", searchInput)); // Equality condition for mood
 
   // Run the "name" queries and push unique docs into the set
@@ -27,10 +24,6 @@ export async function POST(request) {
     list.add(JSON.stringify({ id: doc.id, ...doc.data() })); // Add serialized document to Set to ensure uniqueness
   });
 
-  const querySnapshotName2 = await getDocs(qName2);
-  querySnapshotName2.forEach((doc) => {
-    list.add(JSON.stringify({ id: doc.id, ...doc.data() }));
-  });
 
   const querySnapshotName3 = await getDocs(qName3);
   querySnapshotName3.forEach((doc) => {
@@ -43,10 +36,7 @@ export async function POST(request) {
     list.add(JSON.stringify({ id: doc.id, ...doc.data() }));
   });
 
-  const querySnapshotGenre2 = await getDocs(qGenre2);
-  querySnapshotGenre2.forEach((doc) => {
-    list.add(JSON.stringify({ id: doc.id, ...doc.data() }));
-  });
+
 
   const querySnapshotGenre3 = await getDocs(qGenre3);
   querySnapshotGenre3.forEach((doc) => {
@@ -59,10 +49,7 @@ export async function POST(request) {
     list.add(JSON.stringify({ id: doc.id, ...doc.data() }));
   });
 
-  const querySnapshotMood2 = await getDocs(qMood2);
-  querySnapshotMood2.forEach((doc) => {
-    list.add(JSON.stringify({ id: doc.id, ...doc.data() }));
-  });
+
 
   const querySnapshotMood3 = await getDocs(qMood3);
   querySnapshotMood3.forEach((doc) => {
@@ -77,7 +64,7 @@ export async function POST(request) {
     (value, index, self) =>
       index === self.findIndex((doc) => doc.id === value.id) // Ensure unique by document ID
   );
-
+  console.log(filteredUniqueList)
 
   return NextResponse.json({ list: filteredUniqueList }, { status: 200 });
 }
