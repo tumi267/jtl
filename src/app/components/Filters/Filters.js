@@ -15,7 +15,7 @@ function Filters({ options }) {
     if (list.length > 0) {
       options(list);
     } else {
-    return
+   
     }
   }, [list, options]);
 

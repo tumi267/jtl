@@ -1,0 +1,28 @@
+/* Loading.module.css or similar */
+.spinner {
+    border: 12px solid #f3f3f3; /* Light grey */
+    border-top: 12px solid #272e33; /* Blue */
+    border-radius: 50%;
+    width: 15em; /* Adjust size as needed */
+    height: 15em; /* Adjust size as needed */
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Updated loading overlay for centering */
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background-color: rgba(255, 255, 255, 0.8); /* Light background */
+    z-index: 9999; /* Ensure it appears above other content */
+  }

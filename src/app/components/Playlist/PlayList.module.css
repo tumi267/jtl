@@ -74,3 +74,9 @@
   outline: none; /* Remove focus outline */
   box-shadow: 0 0 6px rgba(106, 90, 205, 0.6); /* Add focus shadow */
 }
+.spinner_contain {
+  height: 100px; /* Adjust as needed */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}

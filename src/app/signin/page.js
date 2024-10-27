@@ -1,12 +1,13 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import styles from './signin.module.css'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { UserState } from '../context/context'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../db/firebase'
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
+import Loading from '../loading'
 function Page() {
   // Initialize necessary hooks and state variables
   const router = useRouter(); // Next.js router hook
@@ -100,6 +101,7 @@ function Page() {
     // JSX structure for the signin/register form
     return (
       <div className={styles.contain}>
+        
         {logger === 'signin' ? ( // Conditional rendering based on logger state
           <form className={styles.input_form} onSubmit={handleSubmit}>
             <input type='text' placeholder='email' onChange={handleEmailChange} />
@@ -131,6 +133,7 @@ function Page() {
             <button type='button' onClick={() => setLogger('signin')}>Sign In</button>
           </form>
         )}
+        
       </div>
     );
   }

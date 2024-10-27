@@ -5,6 +5,8 @@ import Promo from './components/Promo/Promo'
 import PricingPlan from './components/PricingPlan/PricingPlan'
 import Playlist from './components/Playlist/Playlist'
 import Catagorie from './components/Catagorie/Catagorie'
+import Loading from './loading'
+import { Suspense } from 'react'
 
 export default function Home() {
   return (
@@ -15,10 +17,9 @@ export default function Home() {
         <Catagorie/>
         <PricingPlan/>
         <div className={styles.playlists}>
-        <Playlist
-        selete={'fulllist'}
-        options={null}
-        />
+        <Suspense fallback={<Loading />}>
+            <Playlist selete={'fulllist'} />
+          </Suspense>
         </div>
       </div>
     </main>
