@@ -13,6 +13,7 @@ function Filters({ options }) {
   // Update options whenever the list changes
   useEffect(() => {
     if (list.length > 0) {
+      
       options(list);
     } else {
    
@@ -61,10 +62,10 @@ function Filters({ options }) {
       {/* Fix HTML elements */}
       <h4>Choose a Mood:</h4>
       <select name="mood" id="mood" onChange={handleMoodChange}>
-        <option value="happy">Happy</option>
-        <option value="sad">Sad</option>
-        <option value="scary">Scary</option>
-        <option value="mad">Mad</option>
+        <option value="Happy">Happy</option>
+        <option value="Sad">Sad</option>
+        <option value="Scary">Scary</option>
+        <option value="Mad">Mad</option>
       </select>
       <h4>Choose a BPM:</h4>
       <select name="bpm" id="bpm" onChange={handleBPMChange}>

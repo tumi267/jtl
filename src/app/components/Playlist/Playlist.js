@@ -14,6 +14,7 @@ function Playlist({ selete, options, genre }) {
   useEffect(() => {
     const fetchAudioList = async () => {
       try {
+        
         const getAudioList = await fetch('/api/getaudio', {
           method: 'POST',
           body: JSON.stringify({ options, genre })

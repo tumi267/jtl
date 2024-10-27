@@ -12,7 +12,7 @@ export async function POST(request) {
     const songsCollection = collection(db, 'songs');
 
     // Array to store song documents
-    const songarr = [];
+    let songarr = [];
 
     // Function to process and store song documents
     const songlist = (songs) => {
@@ -24,14 +24,23 @@ export async function POST(request) {
 
     // Check if options are provided in the request
     if (req.options !== null) {
-        // Construct the query dynamically using reduce
-        const q = Object.entries(req.options[0]).reduce((acc, [key, value]) => {
-            return query(acc, where(key, '==', value));
-        }, songsCollection);
+  
+        let list = req.options;
+        // Use Promise.all to handle all queries in parallel
+        await Promise.all(
+            list.map(async (e) => {
+                // Construct the query dynamically using reduce
+                const q = Object.entries(e).reduce((acc, [key, value]) => {
+                    return query(acc, where(key, '==', value));
+                }, songsCollection);
 
-        // Execute the query and process the results
-        const songs = await getDocs(q);
-        songlist(songs);
+                // Execute the query and process the results
+                const songs = await getDocs(q);
+                songs.forEach((doc) => {
+                    songarr.push({ id: doc.id, ...doc.data() });
+                });
+            })
+        );
     } else {
         // If no options, check if genre is provided in the request
         if (req.genre) {
@@ -45,7 +54,20 @@ export async function POST(request) {
             songlist(songs);
         }
     }
-
+      // Remove duplicates based on the id key
+      songarr = Array.from(new Map(songarr.map(item => [item.id, item])).values());
+      
+      songarr = songarr.filter(song => {
+        // Check if req.options exists and is an array
+        if (req.options && Array.isArray(req.options)) {
+            return req.options.every(obj => {
+                // Check if every key-value pair in the current object matches the song
+                return Object.entries(obj).every(([key, value]) => song[key] === value);
+            });
+        }
+        return true; // If there are no options, return true to keep all songs
+    });
+      
     // Return the response with the list of songs
     return NextResponse.json({ songUrl: songarr }, { status: 200 });
 }
