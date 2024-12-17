@@ -8,6 +8,7 @@ import { auth } from '../db/firebase'
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
 import Loading from '../loading'
+
 function Page() {
   // Initialize necessary hooks and state variables
   const router = useRouter(); // Next.js router hook
@@ -79,7 +80,12 @@ function Page() {
         const userdetails = userCredential.user;
         setUser(userdetails); // Set user context
         // Redirect to profile page
-        router.push('/Profile');
+        if(userdetails.uid==process.env.NEXT_PUBLIC_uid){
+          router.push(`/admin?${process.env.NEXT_PUBLIC_uid}`);
+        }else{
+          router.push('/Profile');
+        }
+
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -91,7 +97,11 @@ function Page() {
   // Effect to redirect to profile page if user is logged in
   useEffect(() => {
     if (user) {
-      router.push('/Profile');
+      if(user.uid==process.env.NEXT_PUBLIC_uid){
+        router.push(`/admin?member=${process.env.NEXT_PUBLIC_uid}`);
+      }else{
+        router.push('/Profile');
+      }
     }
   }, [user, router]);
   const displaypass=(e)=>{
